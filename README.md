@@ -14,6 +14,7 @@ Welcome to FitLIfe where we make our own way of Living being Fit and happy, we h
 ![Alt text](images/image3.png)
 
 ## Link:
+https://danielbctr.github.io/PW_Lab2/
 
 
 
