@@ -8,158 +8,119 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+    <main>
 
-    <!-- Navigation -->
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About Us</a></li>
-            <li class="dropdown">
-                <a href="#" class="dropbtn">Services</a>
-                <div class="dropdown-content">
-                    <a href="#workouts">Workouts</a>
-                    <a href="#supplements">Supplements</a>
-                    <!-- Add more section names as needed -->
-                </div>
-            </li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+        <!-- HEADER -->
 
-    <!-- Home Section -->
-    <section id="home" class="hero">
-        <img src="assests/gym-workout.jpg" alt="Gym Background" class="background-img">
-        <div class="container">
-            <h1 class="hero-title">Welcome to FitLife Gym</h1>
-            <p class="hero-text">Your path to a healthier lifestyle starts here.</p>
-            <a href="#contact" class="cta-button">Join Now</a>
-        </div>
-    </section>
 
-    <!-- About Us Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2>About Us</h2>
-            <p>FitLife Gym is dedicated to helping individuals achieve their fitness goals through personalized training and a supportive community.</p>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <!-- Workouts Section -->
-            <div class="workouts-section">
-                <h2 class="section-name">Workouts</h2>
-                <div class="service-card">
-                    <img src="cardio.jpg" alt="Cardio Workout">
-                    <h3>Cardio Workouts</h3>
-                    <p>Experience high-energy cardio sessions to boost your endurance and burn calories.</p>
-                </div>
-                <div class="service-card">
-                    <img src="strength.jpg" alt="Strength Training">
-                    <h3>Strength Training</h3>
-                    <p>Build strength and tone muscles with our expertly designed strength training programs.</p>
-                </div>
-                <div class="service-card">
-                    <img src="yoga.jpg" alt="Yoga Classes">
-                    <h3>Yoga Classes</h3>
-                    <p>Relax and rejuvenate with our yoga classes, focusing on mind-body connection.</p>
+        <header class="primary-header">
+            <div class="container">
+                <div class="nav-wrapper">
+                    <a class="logo">
+                        <i class="fa-solid fa-dumbbell"></i>FitLife</a>
+                        <button class="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false">
+                            <span class="fa-solid fa-bars" aria-hidden="true"></span>
+                            <span class="visually-hidden">Menu</span>
+                          </button>
+                    <nav class="primary-navigation" id="primary-navigation">
+                        <ul aria-label="Primary" role="list" class="nav-list">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="#programs-section">Programs</a></li>
+                            <li><a href="#products-section">Products</a></li>
+                            <li><a href="#pricing-section">Pricing</a></li>
+                        </ul>
+                    </nav>
+                    <button class="btn | display-sm-none display-md-inline-flex">Get Started</button>
                 </div>
             </div>
+        </header>
 
-            <!-- Supplements Section -->
-            <div class="supplements-section">
-                <h2 class="section-name">Supplements</h2>
-                <div class="supplement-card">
-                    <img src="protein.jpg" alt="Protein Supplement">
-                    <h3>Protein</h3>
-                    <p>High-quality protein for muscle recovery and growth.</p>
-                    <a href="#" class="buy-button">Buy Now</a>
+
+        <!-- HERO-SECTION -->
+
+
+        <section class="hero-section | padding-block-900">
+            <img src="images/gym-background.jpg" alt="Gym Background" class="background-img">
+            <div class="container">
+                <div class="flow | text-center-sm-only">
+                    <h1 class="fs-primary-heading fw-bold uppercase"><span class="special-text"> Fitness</span> is the
+                         way we <span class="special-text">Live</span> for real</h1>
+                    <p>It is a long established fact that a reader will be distracted by the readable content of a page
+                        when looking at its layout. It is a long established fact that a reader will be distracted by
+                        the readable content of a page when looking at its layout.</p>
+                    <button class="btn">Get Started</button>
+                    
                 </div>
-                <div class="supplement-card">
-                    <img src="creatine.jpg" alt="Creatine Supplement">
-                    <h3>Creatine</h3>
-                    <p>Enhances strength, power, and muscle recovery.</p>
-                    <a href="#" class="buy-button">Buy Now</a>
-                </div>
-                <div class="supplement-card">
-                    <img src="bcaa.jpg" alt="BCAA Supplement">
-                    <h3>BCAA</h3>
-                    <p>Supports muscle growth and reduces muscle soreness.</p>
-                    <a href="#" class="buy-button">Buy Now</a>
-                </div>
-                <!-- Add more supplement cards as needed -->
             </div>
-        </div>
+        </section>
+    </main>
 
-            <!-- Clothing Section -->
-            <div class="clothing-section">
-                <h2 class="section-name">Clothing</h2>
-                <div class="clothing-card">
-                    <img src="clothing1.jpg" alt="Gym Clothing 1">
-                    <h3>Gym Tee</h3>
-                    <p>Stay comfortable during your workout with our breathable gym tees.</p>
-                    <a href="#" class="buy-button">Buy Now</a>
-                </div>
-                <div class="clothing-card">
-                    <img src="clothing2.jpg" alt="Gym Clothing 2">
-                    <h3>Compression Leggings</h3>
-                    <p>Enhance performance and recovery with our compression leggings.</p>
-                    <a href="#" class="buy-button">Buy Now</a>
-                </div>
-                <div class="clothing-card">
-                    <img src="clothing3.jpg" alt="Gym Clothing 3">
-                    <h3>Training Shoes</h3>
-                    <p>Maximize your workout with our specially designed training shoes.</p>
-                    <a href="#" class="buy-button">Buy Now</a>
-                </div>
-                <div class="clothing-card">
-                    <img src="clothing4.jpg" alt="Gym Clothing 4">
-                    <h3>Performance Shorts</h3>
-                    <p>Stay cool and comfortable during intense workouts with our performance shorts.</p>
-                    <a href="#" class="buy-button">Buy Now</a>
-                </div>
-                <div class="clothing-card">
-                    <img src="clothing5.jpg" alt="Gym Clothing 5">
-                    <h3>Arm Sleeves</h3>
-                    <p>Protect and support your arms during weightlifting with our arm sleeves.</p>
-                    <a href="#" class="buy-button">Buy Now</a>
-                </div>
-                <div class="clothing-card">
-                    <img src="clothing6.jpg" alt="Gym Clothing 6">
-                    <h3>Running Jacket</h3>
-                    <p>Stay warm and stylish during your outdoor runs with our running jacket.</p>
-                    <a href="#" class="buy-button">Buy Now</a>
-                </div>
-                <!-- Add more clothing cards as needed -->
-            </div>
-        </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
+    <!-- INTRODUCTION-SECTION -->
+    <section class="introduction | padding-block-900 bg-secondary">
         <div class="container">
-            <h2>Clothing</h2>
-            <p>Explore our exclusive gym clothing collection to boost your style during workouts.</p>
-            <a href="#" class="buy-button">Shop Now</a>
+                <div class="flow introduction-content | text-center-sm-only">
+                    <h2 class="fs-secondary-heading fw-bold uppercase">Welcome to <span class="special-text">FitLife</span></h2>
+                    <p data-width="wide" class="fs-500">It is a long established fact that a reader will be distracted
+                        by the readable content of a page when looking at its layout.It is a long established fact that
+                        a reader will be distracted by the readable content of a page when looking at its layout.It is a
+                        long established fact that a reader will be distracted by the readable content of a page when
+                        looking at its layout. It is a long established fact that a reader will be distracted by the
+                        readable content of a page when looking at its layout </p>
+                    <button class="btn">Read More</button>
+                </div>
+                <div class="introduction-img display-sm-none">
+                    <img src="images/guy2.png" alt=""style="width: 100%">
+                </div>
         </div>
     </section>
+
 
     
 
-     <!-- JavaScript for the slider -->
-     <script>
-        const dropdownBtn = document.querySelector('.dropdown');
-        const dropdownContent = document.querySelector('.dropdown-content');
+    <!-- FOOTER -->
+    <footer class="primary-footer | padding-block-900 bg-secondary">
+        <div class="container">
+            <div class="even-columns text-center-sm-only">
+                <div>
+                    <h4 class="fs-700 uppercase fw-bold">Follow us</h4>
+                    <ul class="social-icons " role="list">
+                        <li><a href=""><i class="fa-brands fa-facebook | text-white fs-700"></i></a></li>
+                        <li><a href=""><i class="fa-brands fa-twitter | text-white fs-700"></i></a></li>
+                        <li><a href=""><i class="fa-brands fa-instagram | text-white fs-700"></i></a></li>
+                        <li><a href=""><i class="fa-brands fa-linkedin | text-white fs-700"></i></a></li>
+                    </ul>
+                    <a class="logo">
+                        <i class="fa-solid fa-dumbbell"></i>FitLife</a>
+                </div>
+                <div>
+                    <h4 class="fs-700 uppercase fw-bold">Links</h4>
+                    <ul role="list" class="primary-footer-links">
+                        <li><a href="">Home</a></li>
+                        <li><a href="">Programs</a></li>
+                        <li><a href="">Products</a></li>
+                        <li><a href="">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="fs-700 uppercase fw-bold">Quick Contacts</h4>
+                    <ul role="list" class="contact-links">
+                        <li><a href=""><i class="fa-solid fa-phone"></i>06969420</a></li>
+                        <li><a href=""><i class="fa-solid fa-envelope"></i></i>FitLife@gmail.com</a></li>
+                        <li><a href=""><i class="fa-solid fa-user"></i>@fitlife1</a></li>
+                        <li><a href=""><i class="fa-solid fa-globe"></i>www.fitlife.com</a></li>
+                        <li><a href=""><i class="fa-solid fa-location-dot"></i>Chișinău str. studenților 9/11,Moldova</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <h5 class="fs-500 fw-semi-bold text-center"><span class="special-text"><i
+                        class="fa-solid fa-dumbbell"></i>FitLife</span> Ⓒ 2024 - All Rights Reserved by Bucataru Daniel FAF-211</h5>
+        </div>
 
-        dropdownBtn.addEventListener('mouseover', () => {
-            dropdownContent.style.display = 'block';
-        });
 
-        dropdownBtn.addEventListener('mouseout', () => {
-            dropdownContent.style.display = 'none';
-        });
-    </script>
+    </footer>
 
 </body>
+
 </html>
