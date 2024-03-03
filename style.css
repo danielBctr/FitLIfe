@@ -1,6 +1,6 @@
 :root {
   /* colors */
-  --clr-primary: hwb(261 3% 84% / 0.997); /* bg-color 1 */
+  --clr-primary: hsla(261, 69%, 10%, 0.997); /* bg-color 1 */
   --clr-secondary: hsl(187, 85%, 39%); /* bg-color 2 */
 
   --clr-accent-500: hsl(215, 91%, 41%);
@@ -645,6 +645,8 @@ section.introduction {
       display: block; /* Show on desktop */
   }
 }
+/*Mascot*/
+
 body {
   margin: 0;
   padding: 0;
@@ -655,34 +657,71 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100px; /* Adjust the height as needed */
+  height: 10px; /* Adjust the height as needed */
   background-color: transparent; /* Set background color to transparent */
   z-index: 1000; /* Set a high z-index to ensure the logo is above other elements */
+  opacity: 0; /* Initially set opacity to 0 */
 }
 
 .logo-wrapper {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 100%;
+  left: 10%;
+  transform: translate(-35%, -25%);
+  display: flex;
+  align-items: center;
 }
 
 .animated-logo {
-  width: 100px; /* Adjust the width as needed */
+  width: 200px; /* Adjust the width as needed */
   height: auto; /* Maintain aspect ratio */
   transition: transform 0.5s ease-in-out;
 }
 
 .message {
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+  background-color: rgba(20, 8, 43, 0.5); /* Set the background color of the message with 50% transparency */
+  padding: 10px; /* Adjust padding as needed */
+  margin-left: 10px; /* Adjust the distance from the logo */
+  opacity: 0; /* Initially set opacity to 0 */
+  transition: opacity 0.5s ease-in-out; /* Add transition for opacity */
+}
+
+.logo-wrapper:hover .animated-logo {
+  animation: rotate 1s infinite, tilt 2s infinite, jump 1s infinite; /* Combine animations */
+}
+
+.logo-wrapper:hover .message {
+  opacity: 1; /* Show the message on hover */
+}
+
+
+@media (max-width: 768px) {
+  .animated-logo {
+    width: 150px; /* Adjust the width as needed for mobile */
+  }
+
+  .logo-wrapper {
+    left: 88%; /* Adjust the left positioning for mobile */
+  }
+
 }
 
 /* Add animation styles */
+@keyframes fadeInAndSlideDown {
+  0% {
+      opacity: 0;
+      transform: translateY(-50%);
+  }
+  20% {
+      opacity: 0;
+      transform: translateY(-50%);
+  }
+  100% {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
 @keyframes rotate {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
@@ -701,16 +740,16 @@ body {
 }
 
 /* Apply animation based on class and hover */
-.animated-logo:hover {
-  animation: rotate 1s infinite; /* Adjust duration as needed */
+.logo-container {
+  animation: fadeInAndSlideDown 4s ease-in-out 1s forwards; /* Adjust duration, delay, and other properties as needed */
 }
 
 .animated-logo {
-  animation: tilt 2s infinite; /* Adjust duration as needed */
+  animation: tilt 1s infinite; /* Adjust duration as needed */
 }
 
 .animated-logo {
-  animation: jump 1s infinite; /* Adjust duration as needed */
+  animation: jump 1.5s infinite; /* Adjust duration as needed */
 }
 
 /* Apply animation based on class and hover */
@@ -724,5 +763,14 @@ body {
   opacity: 1;
 }
 
+body {
+  margin-top: 1px; /* Adjust the margin-top based on the logo's height */
+}
+.special-text2 {
+  color: var(--clr-accent-500);
+}
 
+.logo-wrapper:hover .animated-logo {
+  animation: rotate 1.5s infinite;
+}
 
