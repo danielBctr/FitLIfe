@@ -68,6 +68,10 @@
   }
 }
 
+/* ------------------------- */
+/* Reset                     */
+/* ------------------------- */
+
 /* Box sizing rules */
 *,
 *::before,
@@ -185,9 +189,20 @@ p[data-width="wide"] {
   margin: 0 auto;
 }
 
+.btn:hover,
+.btn:focus-visible {
+  background-color: var(--clr-accent-300);
+}
+
+.btn[data-type="btn-secondary"]:hover,
+.btn[data-type="btn-secondary"]:focus-visible {
+  background-color: var(--clr-accent-500);
+  color: var(--clr-primary);
+}
 
 /* Header */
 main {
+  background-image: url("../images/bg.jpg");
   background-position: center center;
   background-size: cover;
 }
@@ -222,8 +237,7 @@ main {
 
 .nav-list a {
   text-decoration: none;
-  color: #ffffff; 
-  font-weight: bold;
+  color: var(--clr-white);
   transition: all 0.3s;
 }
 
@@ -234,7 +248,47 @@ main {
   border-bottom: var(--size-100) solid;
 }
 
+@media (max-width: 50em) {
+  .primary-navigation {
+    display: none;
+    position: fixed;
+    padding: var(--size-700);
+    inset: 7rem var(--size-400) auto;
+    background: var(--clr-primary);
+    border-radius: var(--size-100);
+    z-index: 100;
+  }
 
+  .primary-header[data-overlay]::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(rgb(0 0 0 / 0), rgb(0 0 0 / 0.8));
+  }
+
+  .nav-list {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .primary-navigation[data-visible] {
+    display: block;
+  }
+
+  .mobile-nav-toggle {
+    display: block;
+    position: fixed;
+    font-size: var(--fs-700);
+    top: var(--size-600);
+    right: var(--size-400);
+    background: transparent;
+    cursor: pointer;
+    border: 0;
+    padding: var(--size-200);
+    color: var(--clr-accent-300);
+    z-index: 10;
+  }
+}
 
 /* Introduction Section */
 
@@ -313,7 +367,7 @@ section.introduction {
 }
 
 .package-list > li::before {
-  content: "+";
+  content: "✓";
   color: rgb(107, 243, 107);
   padding-right: var(--size-200);
   font-weight: var(--fw-bold);
@@ -562,7 +616,6 @@ section.introduction {
     display: inline-flex;
   }
 }
-
 .background-img {
     width: 100%;
     height: auto;
