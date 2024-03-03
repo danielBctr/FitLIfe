@@ -645,3 +645,84 @@ section.introduction {
       display: block; /* Show on desktop */
   }
 }
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.logo-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100px; /* Adjust the height as needed */
+  background-color: transparent; /* Set background color to transparent */
+  z-index: 1000; /* Set a high z-index to ensure the logo is above other elements */
+}
+
+.logo-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.animated-logo {
+  width: 100px; /* Adjust the width as needed */
+  height: auto; /* Maintain aspect ratio */
+  transition: transform 0.5s ease-in-out;
+}
+
+.message {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Add animation styles */
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes tilt {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(20deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes jump {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-20px); }
+  60% { transform: translateY(-10px); }
+}
+
+/* Apply animation based on class and hover */
+.animated-logo:hover {
+  animation: rotate 1s infinite; /* Adjust duration as needed */
+}
+
+.animated-logo {
+  animation: tilt 2s infinite; /* Adjust duration as needed */
+}
+
+.animated-logo {
+  animation: jump 1s infinite; /* Adjust duration as needed */
+}
+
+/* Apply animation based on class and hover */
+.logo-wrapper:hover .animated-logo {
+  animation: rotate 1s infinite; /* Adjust duration as needed */
+  animation: tilt 2s infinite; /* Adjust duration as needed */
+  animation: jump 1s infinite; /* Adjust duration as needed */
+}
+
+.logo-wrapper:hover .message {
+  opacity: 1;
+}
+
+
+
