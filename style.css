@@ -624,3 +624,24 @@ section.introduction {
     left: 0;
     z-index: -1;
 }
+
+/* Mobile-only styles for the About Us section */
+@media (max-width: 767px) {
+  .about-us-section {
+      display: block; /* Show on mobile */
+  }
+
+  .about-us-section-desktop {
+      display: none; /* Hide on desktop */
+  }
+}
+
+@media (min-width: 768px) {
+  .about-us-section {
+      display: none; /* Hide on mobile */
+  }
+
+  .about-us-section-desktop {
+      display: block; /* Show on desktop */
+  }
+}
