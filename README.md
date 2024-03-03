@@ -13,6 +13,17 @@ Welcome to FitLIfe where we make our own way of Living being Fit and happy, we h
 ![Alt text](images/image2.png)
 ![Alt text](images/image3.png)
 
+## Changes for Lab3:
+- **Mobile Responsive** 
+- **New Only Mobile SECTION** 
+- **Moving Mascot** 
+- **New Message on hover** 
+
+## Screenshots(Lab3)
+![Alt text](images/image4.png)
+![Alt text](images/image5.png)
+![Alt text](images/image6.png)
+
 ## Link:
 https://danielbctr.github.io/PW_Lab2/
 
