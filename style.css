@@ -1,13 +1,13 @@
 :root {
   /* colors */
-  --clr-primary: hsla(261, 69%, 10%, 0.997); /* bg-color 1 */
+  --clr-primary: hsla(178, 58%, 53%, 0.997); /* bg-color 1 */
   --clr-secondary: hsl(187, 85%, 39%); /* bg-color 2 */
 
   --clr-accent-500: hsl(215, 91%, 41%);
   --clr-accent-300: hsl(169 70% 85%);
 
   --clr-white: hsl(240 0% 100%);
-  --clr-dark: hsl(230 0% 0%);
+  --clr-dark: hsl(0, 0%, 91%);
 
   /* font-sizes */
   --fs-300: 0.8125rem;
@@ -159,7 +159,7 @@ p[data-width="wide"] {
 
 /* button */
 
-.btn {
+/* .btn {
   display: inline-flex;
   cursor: pointer;
   text-decoration: none;
@@ -173,9 +173,9 @@ p[data-width="wide"] {
   background-color: var(--clr-accent-500);
   box-shadow: var(--box-shadow-btn);
   transition: all 0.3s;
-}
+} */
 
-.btn[data-type="btn-center"] {
+/* .btn[data-type="btn-center"] {
   display: block;
   margin-inline: auto;
 }
@@ -187,7 +187,7 @@ p[data-width="wide"] {
   box-shadow: none;
   display: block;
   margin: 0 auto;
-}
+} */
 
 .btn:hover,
 .btn:focus-visible {
