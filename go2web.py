@@ -4,7 +4,6 @@ import sys
 
 
 
-
 def print_help():
     print("  go2web -u    Make an HTTP request to the specified <URL> and print the response")
     print("  go2web -s    Make an HTTP request to search the <search-term> using Google and print top 10 results")
