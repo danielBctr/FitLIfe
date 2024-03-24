@@ -1,6 +1,23 @@
 #!/usr/bin/env python3
 
 import sys
+import socket
+from urllib.parse import urlparse
+from bs4 import BeautifulSoup
+
+
+
+def make_request(url):
+    try:
+        parsed_url = urlparse(url)
+        with socket.create_connection((parsed_url.netloc, 80)) as s:
+            s.sendall(f"GET {parsed_url.path or '/'} HTTP/1.1\r\nHost: {parsed_url.netloc}\r\nConnection: close\r\n\r\n".encode())
+            response = b''.join(iter(lambda: s.recv(1024), b''))
+        return BeautifulSoup(response, 'html.parser').get_text()
+    except Exception as e:
+        return f"Error: {e}"
+
+
 
 
 
@@ -16,6 +33,12 @@ def main():
         print_help()
         return
 
+    option, arg = args[:2]
+    actions = {'-u': lambda: make_request(arg),
+
+               '-h': print_help}
+
+    print(actions.get(option, lambda: "Invalid option. Use '-h' for help.")())
 
 
 if __name__ == "__main__":
