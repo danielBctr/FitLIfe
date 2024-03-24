@@ -292,7 +292,7 @@ main {
 
 /* Introduction Section */
 
-section.introduction {
+ section.introduction {
   position: relative;
 }
 
@@ -339,7 +339,7 @@ section.introduction {
 }
 
 /* Pricing  */
-@media (min-width: 50em) {
+ @media (min-width: 50em) {
   .pricing .plans {
     display: flex;
     align-items: center;
