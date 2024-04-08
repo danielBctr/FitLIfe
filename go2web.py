@@ -1,56 +1,118 @@
 #!/usr/bin/env python3
 
+import os
+import ssl
+import pickle
 import sys
 import socket
-from urllib.parse import urlparse
+from urllib.parse import urlparse, quote
 from bs4 import BeautifulSoup
 
 
-def make_request(url):
-    try:
-        parsed_url = urlparse(url)
-        with socket.create_connection((parsed_url.netloc, 80)) as s:
-            s.sendall(f"GET {parsed_url.path or '/'} HTTP/1.1\r\nHost: {parsed_url.netloc}\r\nConnection: close\r\n\r\n".encode())
-            response = b''.join(iter(lambda: s.recv(1024), b''))
-        return BeautifulSoup(response, 'html.parser').get_text()
-    except Exception as e:
-        return f"Error: {e}"
+CACHE_FILE = "cache.pkl"
 
+def readCache():
+    if os.path.exists(CACHE_FILE):
+        with open(CACHE_FILE, "rb") as f:
+            return pickle.load(f)
+    return {}
 
-def search(search_term):
+def writeCache(cache):
+    with open(CACHE_FILE, "wb") as f:
+        pickle.dump(cache, f)
+
+def make_request(host, path, redirectCount=0, maxRedirects=4):
     try:
-        search_url = f"/search?q={search_term}"
-        with socket.create_connection(('www.google.md', 80)) as s:
-            s.sendall(f"GET {search_url} HTTP/1.1\r\nHost: www.google.md\r\nConnection: close\r\n\r\n".encode())
-            response = b''.join(iter(lambda: s.recv(1024), b''))
+        context = ssl.create_default_context()
+        with context.wrap_socket(socket.socket(socket.AF_INET), server_hostname=host) as s:
+            s.connect((host, 443))
+            request = f"GET {path} HTTP/1.1\r\nHost: {host}\r\nConnection: close\r\n\r\n"
+            s.sendall(request.encode())
+            response = b''
+            while True:
+                data = s.recv(1024)
+                if not data:
+                    break
+                response += data
+        responseStr = response.decode("utf-8", errors="ignore")
+        responseLines = responseStr.split("\r\n")
+
+        if responseLines[0].startswith("HTTP/1.1 3"):
+            for line in responseLines:
+                if line.startswith("Location:"):
+                    newLocation = line.split(": ", 1)[1]
+                    newLocation = newLocation.strip()
+                    newHost = urlparse(newLocation).netloc
+                    newPath = urlparse(newLocation).path
+                    return make_request(newHost, newPath, redirectCount + 1, maxRedirects)
         soup = BeautifulSoup(response, 'html.parser')
-        results = []
-        for i, result in enumerate(soup.find_all('a')[16:26], start=1):
-            results.append(f"{i}. {result.text} - {result['href']}")
-        return '\n'.join(results)
+        text = soup.get_text(strip=True)
+        return soup, text
     except Exception as e:
-        return f"Error: {e}"
+        return f"Error: {str(e)}"
 
+def search(searchTerm, cache):
+    if searchTerm in cache:
+        return cache[searchTerm]
+    try:
+        host = "www.google.com"
+        searchQuery = quote(searchTerm)
+        path = f"/search?q={searchQuery}"
+        soup, body = make_request(host, path)
+        if soup:
+            links = soup.find_all('a')
+            searchResults = []
+            for link in links:
+                href = link.get('href')
+                if href.startswith('/url?q='):
+                    url = href.split('/url?q=')[1].split('&')[0]
+                    searchResults.append(url)
+                    if len(searchResults) >= 10:
+                        break
+            cache[searchTerm] = searchResults
+            writeCache(cache)
+            return searchResults
+        else:
+            return "Error: Failed to fetch search results"
+    except Exception as e:
+        return f"Error: {str(e)}"
 
-def print_help():
-    print("  go2web -u    Make an HTTP request to the specified <URL> and print the response")
-    print("  go2web -s    Make an HTTP request to search the <search-term> using Google and print top 10 results")
-    print("  go2web -h    List available commands")
-
+def printHelp():
+    print("  go2web -u <URL>            Make an HTTP request to the specified <URL>")
+    print("  go2web -s <search-term>    Make an HTTP request to search the <search-term>")
+    print("  go2web -h                  List available commands")
 
 def main():
-    args = sys.argv[1:]
-    if len(args) < 2 or args[0] not in ['-u', '-s', '-h']:
-        print_help()
+    cache = readCache()
+    if len(sys.argv) < 3:
+        printHelp()
         return
-
-    option, arg = args[:2]
-    actions = {'-u': lambda: make_request(arg),
-               '-s': lambda: search(arg),
-               '-h': print_help}
-
-    print(actions.get(option, lambda: "Invalid option. Use '-h' for help.")())
-
+    if sys.argv[1] == '-u':
+        url = sys.argv[2]
+        parsed_url = urlparse(url)
+        host = parsed_url.netloc
+        path = parsed_url.path if parsed_url.path else '/'
+        response = make_request(host, path)
+        if isinstance(response, tuple):
+            soup, body = response
+            if body:
+                print(body)
+            else:
+                print("Error: Failed to fetch URL")
+        else:
+            print(response)
+    elif sys.argv[1] == '-s':
+        search_term = ' '.join(sys.argv[2:])
+        search_results = search(search_term, cache)
+        if isinstance(search_results, list):
+            for i, url in enumerate(search_results, start=1):
+                print(f"{i}. {url}")
+        else:
+            print(search_results)
+    elif sys.argv[1] == '-h':
+        printHelp()
+    else:
+        print("Invalid option. Use '-h' for help.")
 
 if __name__ == "__main__":
     main()
